@@ -1,0 +1,1074 @@
+\documentclass[11pt,a4paper,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\geometry{margin=0.75in, includeheadfoot, headheight=14pt, headsep=10pt, voffset=-0.5in}
+
+% Fix inline math display
+\everymath{\displaystyle}
+
+% Define colors for different box types
+\definecolor{defcolor}{HTML}{FFFAD8}      % Light yellow for definitions
+\definecolor{examplecolor}{HTML}{D8FFD9}  % Light green for examples
+\definecolor{theoremcolor}{HTML}{E6E6FF}  % Light purple for theorems
+\definecolor{exercisecolor}{HTML}{FFE6E6} % Light pink for exercises
+\definecolor{remarkcolor}{HTML}{D8F5F5}   % Light cyan for remarks
+
+% Define tcolorbox environments (mathtext.sty style)
+\tcbuselibrary{breakable}
+
+\newtcolorbox{definitionbox}[1][]{
+    colback=defcolor,
+    colframe=defcolor,
+    outer arc=0pt,
+    title={#1},
+    coltitle=black,
+    toptitle=2mm,
+    fonttitle=\bfseries\large,
+    unbreakable
+}
+
+\newtcolorbox{examplebox}[1][]{
+    colback=examplecolor,
+    colframe=examplecolor,
+    outer arc=0pt,
+    title={#1},
+    coltitle=black,
+    toptitle=2mm,
+    fonttitle=\bfseries\large,
+    unbreakable
+}
+
+\newtcolorbox{theorembox}[1][]{
+    colback=theoremcolor,
+    colframe=theoremcolor,
+    outer arc=0pt,
+    title={#1},
+    coltitle=black,
+    toptitle=2mm,
+    fonttitle=\bfseries\large,
+    unbreakable
+}
+
+\newtcolorbox{rulebox}[1][]{
+    colback=theoremcolor,
+    colframe=theoremcolor,
+    outer arc=0pt,
+    title={#1},
+    coltitle=black,
+    toptitle=2mm,
+    fonttitle=\bfseries\large,
+    unbreakable
+}
+
+\newtcolorbox{corollarybox}[1][]{
+    colback=theoremcolor!70,
+    colframe=theoremcolor!70,
+    outer arc=0pt,
+    title={#1},
+    coltitle=black,
+    toptitle=2mm,
+    fonttitle=\bfseries\large,
+    unbreakable
+}
+
+\newtcolorbox{exercisebox}[1][]{
+    colback=exercisecolor,
+    colframe=exercisecolor,
+    outer arc=0pt,
+    title={#1},
+    coltitle=black,
+    toptitle=2mm,
+    fonttitle=\bfseries\large,
+    unbreakable
+}
+
+\newtcolorbox{remarkbox}[1][]{
+    colback=remarkcolor,
+    colframe=remarkcolor,
+    outer arc=0pt,
+    title={#1},
+    coltitle=black,
+    toptitle=2mm,
+    fonttitle=\bfseries\large,
+    unbreakable
+}
+
+\newtcolorbox{examplebox}[1][]{
+    colback=examplecolor,
+    colframe=examplecolor!80!black,
+    fonttitle=\bfseries,
+    title={#1},
+    breakable,
+    enhanced,
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{theorembox}[1][]{
+    colback=theoremcolor,
+    colframe=theoremcolor!80!black,
+    fonttitle=\bfseries,
+    title={#1},
+    breakable,
+    enhanced,
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{rulebox}[1][]{
+    colback=theoremcolor,
+    colframe=theoremcolor!80!black,
+    fonttitle=\bfseries,
+    title={#1},
+    breakable,
+    enhanced,
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{corollarybox}[1][]{
+    colback=theoremcolor!70,
+    colframe=theoremcolor!80!black,
+    fonttitle=\bfseries,
+    title={#1},
+    breakable,
+    enhanced,
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{exercisebox}[1][]{
+    colback=exercisecolor,
+    colframe=exercisecolor!80!black,
+    fonttitle=\bfseries,
+    title={#1},
+    breakable,
+    enhanced,
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{remarkbox}[1][]{
+    colback=remarkcolor,
+    colframe=remarkcolor!80!black,
+    fonttitle=\bfseries,
+    title={#1},
+    breakable,
+    enhanced,
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+% Page style - full width headers (extend beyond margins)
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+\renewcommand{\headrulewidth}{0.4pt}
+% Extend headers beyond text margins
+\fancyheadoffset[L,R]{0.5in}
+\renewcommand{\headwidth}{\textwidth}
+
+\title{\Huge\textbf{STAT 230 Probability}\\[1cm]\Large \textbf{SEE TEXTBOOK FOR DETAILED EXAMPLES AND SOLUTIONS}\\[0.5cm]\normalsize Extracted from Course Notes}
+\author{University of Waterloo}
+\date{Winter 2026 Edition}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\chapter{Introduction to Probability}
+
+\section{Definitions of Probability}
+
+\subsection*{Key Concepts}
+This section introduces three definitions of probability:
+\begin{itemize}
+    \item \textbf{Classical Definition}: Probability = $\frac{\text{number of ways event can occur}}{\text{number of outcomes in } S}$ (assuming equally likely outcomes)
+    \item \textbf{Relative Frequency Definition}: Probability as limiting proportion in repeated experiments
+    \item \textbf{Subjective Probability Definition}: Probability as measure of personal certainty
+\end{itemize}
+
+The mathematical approach uses:
+\begin{itemize}
+    \item A sample space $S$ of all possible outcomes
+    \item A set of events (subsets of $S$)
+    \item A mechanism for assigning probabilities to events
+\end{itemize}
+
+\section{Mathematical Probability Models}
+
+\begin{definitionbox}[Definition 1.2.1 (Sample Space)]
+A \textbf{sample space} $S$ is a set of distinct outcomes for an experiment or process, with the property that in a single trial, one and only one of these outcomes occurs.
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 1.2.2 (Event)]
+An \textbf{event} is a subset $A \subseteq S$. If the event is indivisible so it contains only one point (e.g., $A_1 = \{a_1\}$), we call it a \textbf{simple event}. An event $A$ made up of two or more simple events is called a \textbf{compound event}.
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 1.2.3 (Probability Distribution on Discrete Sample Space)]
+Let $S = \{a_1, a_2, a_3, \ldots\}$ be a discrete sample space. Assign numbers (i.e., probabilities) $P(a_i)$, $i = 1, 2, 3, \ldots$, to the $a_i$'s such that the following two conditions hold:
+\begin{enumerate}
+    \item $0 \leq P(a_i) \leq 1$
+    \item $\sum_{\text{all } i} P(a_i) = 1$
+\end{enumerate}
+The set of probabilities $\{P(a_i), i = 1, 2, 3, \ldots\}$ is called a \textbf{probability distribution} on $S$.
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 1.2.4 (Probability of an Event)]
+The probability $P(A)$ of an event $A$ is the sum of the probabilities for all the simple events that make up $A$, or simply $P(A) = \sum_{a \in A} P(a)$.
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 1.2.5 (Odds)]
+The \textbf{odds in favour} of an event $A$ is the probability the event occurs divided by the probability it does not occur, or simply $\frac{P(A)}{1-P(A)}$. The \textbf{odds against} the event is the reciprocal of this quantity, or simply $\frac{1-P(A)}{P(A)}$.
+\end{definitionbox}
+
+
+\begin{examplebox}[Example 1.2.1]
+Draw one card from a standard well-shuffled deck of cards, comprised of 13 cards (i.e., 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A) in each of 4 distinct suits: diamonds ($\diamondsuit$), hearts ($\heartsuit$), spades ($\spadesuit$), and clubs ($\clubsuit$). Find the probability that the card drawn is a club.
+
+\textbf{Solution 1:} Let $S = \{\diamondsuit, \heartsuit, \spadesuit, \clubsuit\}$. Then $S$ has 4 points, with 1 of them being ``club'', so $P(\clubsuit) = \frac{1}{4}$.
+
+\textbf{Solution 2:} Consider the sample space $S = \{2\diamondsuit, 3\diamondsuit, \ldots, A\diamondsuit, 2\heartsuit, \ldots, A\clubsuit\}$. Each of the 52 cards has probability $\frac{1}{52}$. The event $A = \{2\clubsuit, 3\clubsuit, \ldots, A\clubsuit\}$ has 13 outcomes, so $P(A) = \frac{13}{52} = \frac{1}{4}$.
+\end{examplebox}
+
+\begin{examplebox}[Example 1.2.2]
+Toss a coin twice. Find the probability of getting exactly one head.
+
+\textbf{Solution:} Let $S = \{HH, HT, TH, TT\}$ and assume each simple event has probability $\frac{1}{4}$. Since one head occurs for simple events $HT$ and $TH$, the event of interest is $A = \{HT, TH\}$ and $P(A) = \frac{1}{4} + \frac{1}{4} = \frac{1}{2}$.
+\end{examplebox}
+
+\begin{examplebox}[Example 1.2.3]
+Roll a red die and a green die. Find the probability of the event $A$ = ``the total number of dots showing on the upturned faces is 5''.
+
+\textbf{Solution:} Let $(x, y)$ represent getting $x$ on the red die and $y$ on the green die. The sample space $S$ has $6 \times 6 = 36$ equally probable outcomes. For the event of interest, $A = \{(1,4), (2,3), (3,2), (4,1)\}$ and therefore $P(A) = \frac{4}{36} = \frac{1}{9}$.
+\end{examplebox}
+
+\section{Counting in Uniform Probability Models}
+
+\subsection*{Key Concepts}
+\textbf{Counting Rules:}
+\begin{itemize}
+    \item \textbf{Addition Rule:} If we can do job 1 in $p$ ways and job 2 in $q$ ways, we can do either job 1 OR job 2 (but not both) in $p + q$ ways.
+    \item \textbf{Multiplication Rule:} If we can do job 1 in $p$ ways and, for each of these ways, we can do job 2 in $q$ ways, then we can do both job 1 AND job 2 in $p \times q$ ways.
+\end{itemize}
+
+\textbf{Permutations and Combinations:}
+\begin{itemize}
+    \item $n!$ = number of arrangements of $n$ distinct objects
+    \item $n^{(k)} = n(n-1)\cdots(n-k+1) = \frac{n!}{(n-k)!}$ = permutations of $k$ objects from $n$
+    \item $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ = combinations (subsets) of size $k$ from $n$ objects
+\end{itemize}
+
+
+\begin{examplebox}[Example 1.3.1]
+Consider an experiment in which we select two digits from the set $\{1, 2, 3, 4, 5\}$ with replacement. Find the probability that one digit is even.
+
+\textbf{Solution:} The event can be re-worded as: ``The first digit is even AND the second is odd (in $2 \times 3$ ways) OR the first digit is odd AND the second is even (in $3 \times 2$ ways)''. There are $(2 \times 3) + (3 \times 2) = 12$ ways for this event to occur. Since $S$ contains $5 \times 5 = 25$ outcomes, $P(\text{one digit is even}) = \frac{12}{25}$.
+\end{examplebox}
+
+\begin{examplebox}[Example 1.3.2]
+Suppose the letters a, b, c, d, e, and f are arranged at random to form a six-letter word. Find the probability that the second letter is e or f.
+
+\textbf{Solution:} The sample space has $6! = 720$ equally probable outcomes. For the event $A$ = ``second letter is e or f'': we can fill the second box in 2 ways, then the first box in 5 ways, then the remaining four boxes in $4! = 24$ ways. So $P(A) = \frac{2 \times 5 \times 24}{720} = \frac{240}{720} = \frac{1}{3}$.
+\end{examplebox}
+
+\begin{examplebox}[Example 1.3.3]
+A password of length 4 is formed by randomly selecting with replacement 4 digits from $\{0, 1, \ldots, 9\}$. Find:
+\begin{enumerate}[label=(\alph*)]
+    \item $P(A)$ where $A$ = ``password has only even digits'': $P(A) = \frac{5^4}{10^4} = \frac{1}{16}$
+    \item $P(B)$ where $B$ = ``all digits unique'': $P(B) = \frac{10^{(4)}}{10^4} = \frac{10 \times 9 \times 8 \times 7}{10^4} = \frac{63}{125}$
+    \item $P(C)$ where $C$ = ``password contains at least one 2'': $P(C) = 1 - \frac{9^4}{10^4} = \frac{3439}{10000}$
+\end{enumerate}
+\end{examplebox}
+
+\begin{examplebox}[Example 1.3.5]
+Consider a group of six third-year and seven fourth-year students. A committee of size five is randomly formed. Find:
+\begin{enumerate}[label=(\alph*)]
+    \item $P(A)$ = Roger (a third-year) is included: $P(A) = \frac{\binom{12}{4}}{\binom{13}{5}} = \frac{5}{13}$
+    \item $P(B)$ = committee is all fourth-year: $P(B) = \frac{\binom{7}{5}}{\binom{13}{5}} = \frac{21}{1287} = \frac{7}{429}$
+    \item $P(C)$ = at most four third-years: $P(C) = 1 - \frac{\binom{6}{5}}{\binom{13}{5}} = \frac{1281}{1287} = \frac{427}{429}$
+\end{enumerate}
+\end{examplebox}
+
+\begin{examplebox}[Example 1.3.6]
+A box contains 3 red, 4 white, and 3 green balls. A sample of 4 balls is selected without replacement. Find:
+\begin{enumerate}[label=(\alph*)]
+    \item $P(A)$ = sample contains 2 red: $P(A) = \frac{\binom{3}{2}\binom{7}{2}}{\binom{10}{4}} = \frac{63}{210} = \frac{3}{10}$
+    \item $P(B)$ = 2 red, 1 white, 1 green: $P(B) = \frac{\binom{3}{2}\binom{4}{1}\binom{3}{1}}{\binom{10}{4}} = \frac{36}{210} = \frac{6}{35}$
+    \item $P(C)$ = 2 or more red: $P(C) = \frac{\binom{3}{2}\binom{7}{2} + \binom{3}{3}\binom{7}{1}}{\binom{10}{4}} = \frac{70}{210} = \frac{1}{3}$
+\end{enumerate}
+\end{examplebox}
+
+
+\subsection*{Section 1.1 Problems}
+\begin{enumerate}
+    \item Try to think of examples of probabilities you have encountered which might have been obtained by each of the three ``definitions''.
+    \item Which definitions do you think could be used for obtaining the following probabilities?
+    \begin{enumerate}[label=(\alph*)]
+        \item You have a claim on your car insurance in the next year.
+        \item There is a meltdown at a nuclear power plant during the next 5 years.
+        \item A person's birthday is in April.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Section 1.2 Problems}
+\begin{enumerate}
+    \item Students in a particular program have the same 4 math professors. Two students each independently ask one of their math professors for a letter of reference.
+    \begin{enumerate}[label=(\alph*)]
+        \item List a sample space for this ``experiment''.
+        \item Use this sample space to determine the odds in favour of both students asking the same professor.
+    \end{enumerate}
+    \item Toss a fair coin 3 times.
+    \begin{enumerate}[label=(\alph*)]
+        \item List a sample space for this ``experiment''.
+        \item What are the odds against getting exactly 2 tails?
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Section 1.3 Problems}
+\begin{enumerate}
+    \item A course has four sections with no limit on enrolment. Three students each pick a section at random.
+    \begin{enumerate}[label=(\roman*)]
+        \item Find the probability that all three students end up in the same section.
+        \item Find the probability that all three students end up in different sections.
+        \item Find the probability that no one picks section 1.
+    \end{enumerate}
+    \item Canadian postal codes consist of 3 letters alternated with 3 digits. For a randomly chosen postal code, find the probability that:
+    \begin{enumerate}[label=(\alph*)]
+        \item all 3 letters are the same
+        \item the digits are all even or all odd
+    \end{enumerate}
+    \item A binary sequence of length 10 is chosen uniformly at random. What is the probability it has exactly 5 zeros?
+    \item \textbf{The Birthday Problem:} Suppose there are $r$ persons in a room. Find the probability that no two persons have the same birthday (ignoring Feb 29). Find the numerical value for $r = 20, 40, 60$.
+\end{enumerate}
+
+
+\chapter{Probability Rules and Conditional Probability}
+
+\section{Use of Sets}
+
+\subsection*{Key Concepts}
+\textbf{Set Operations for Events:}
+\begin{itemize}
+    \item \textbf{Union} $A \cup B$: Event ``$A$ or $B$'' (at least one occurs)
+    \item \textbf{Intersection} $A \cap B = AB$: Event ``$A$ and $B$'' (both occur)
+    \item \textbf{Complement} $\bar{A}$: Event ``not $A$''
+    \item \textbf{Empty event} $\emptyset$: Contains no outcomes, $P(\emptyset) = 0$
+\end{itemize}
+
+\textbf{De Morgan's Laws:}
+\begin{itemize}
+    \item $\overline{A \cup B} = \bar{A} \cap \bar{B}$
+    \item $\overline{A \cap B} = \bar{A} \cup \bar{B}$
+\end{itemize}
+
+\section{Addition Rules for Unions of Events}
+
+\begin{rulebox}[Rule 1 (Normalization)]
+$P(S) = 1$
+\end{rulebox}
+
+\begin{rulebox}[Rule 2 (Boundedness)]
+For any event $A$, $0 \leq P(A) \leq 1$.
+\end{rulebox}
+
+\begin{rulebox}[Rule 3 (Monotonicity)]
+If $A$ and $B$ are two events with $A \subseteq B$, then $P(A) \leq P(B)$.
+\end{rulebox}
+
+\begin{rulebox}[Rule 4a (Probability of the Union of Two Events)]
+\[P(A \cup B) = P(A) + P(B) - P(AB)\]
+\end{rulebox}
+
+\begin{rulebox}[Rule 4b (Probability of the Union of Three Events)]
+\[P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(AB) - P(AC) - P(BC) + P(ABC)\]
+\end{rulebox}
+
+
+\begin{definitionbox}[Definition 2.2.1 (Mutually Exclusive Events)]
+Events $A$ and $B$ are \textbf{mutually exclusive} if $AB = \emptyset$.
+\end{definitionbox}
+
+\begin{rulebox}[Rule 5 (Probability of Union of Mutually Exclusive Events)]
+If $A_1, A_2, \ldots, A_n$ are mutually exclusive events, then
+\[P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n P(A_i)\]
+\end{rulebox}
+
+\begin{rulebox}[Rule 6 (Probability of the Complement)]
+$P(A) = 1 - P(\bar{A})$
+\end{rulebox}
+
+
+\begin{examplebox}[Example 2.2.1]
+In a standard deck of 52 cards, two suits are red and two are black. There are 3 face cards (J, Q, K) per suit. If one card is randomly drawn, find $P(\text{red card or face card})$.
+
+\textbf{Solution:} Let $A$ = red card, $B$ = face card. Then $P(A) = \frac{26}{52} = \frac{1}{2}$, $P(B) = \frac{12}{52} = \frac{3}{13}$, and $P(AB) = \frac{6}{52} = \frac{3}{26}$.
+
+Using Rule 4a: $P(A \cup B) = \frac{1}{2} + \frac{3}{13} - \frac{3}{26} = \frac{8}{13}$
+\end{examplebox}
+
+\begin{examplebox}[Example 2.2.2]
+An elementary school offers Russian, French, and German classes. Among 100 students: 26 in Russian, 29 in French, 17 in German, 12 in Russian and French, 6 in Russian and German, 4 in French and German, 2 in all three. Find the probability a randomly chosen student takes no language classes.
+
+\textbf{Solution:} Using Rule 4b:
+$P(R \cup F \cup G) = 0.26 + 0.29 + 0.17 - 0.12 - 0.06 - 0.04 + 0.02 = 0.52$
+
+By De Morgan's Law: $P(\bar{R} \cap \bar{F} \cap \bar{G}) = 1 - P(R \cup F \cup G) = 1 - 0.52 = 0.48$
+\end{examplebox}
+
+\begin{examplebox}[Example 2.2.3]
+Three fair dice are rolled. Calculate $P(\text{at least one 6})$.
+
+\textbf{Solution:} Let $A_i$ = ``6 on die $i$''. Using the complement:
+$P(A_1 \cup A_2 \cup A_3) = 1 - P(\bar{A_1} \cap \bar{A_2} \cap \bar{A_3}) = 1 - \left(\frac{5}{6}\right)^3 = \frac{91}{216}$
+\end{examplebox}
+
+\section{Dependent and Independent Events}
+
+\begin{definitionbox}[Definition 2.3.1 (Independent Events)]
+Events $A$ and $B$ are \textbf{independent events} if and only if $P(AB) = P(A)P(B)$. If the events are not independent, we refer to them as \textbf{dependent}.
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 2.3.2 (Mutual Independence)]
+The events $A_1, A_2, \ldots, A_n$, $n \geq 2$, are \textbf{mutually independent} if and only if
+\[P(A_{i_1} A_{i_2} \cdots A_{i_k}) = P(A_{i_1})P(A_{i_2}) \cdots P(A_{i_k})\]
+for all distinct subscripts $i_1, i_2, \ldots, i_k$ chosen from $\{1, 2, \ldots, n\}$.
+\end{definitionbox}
+
+
+\begin{examplebox}[Example 2.3.1]
+A fair coin is tossed twice. Define:
+\begin{itemize}
+    \item $A$ = ``head on 1st toss''
+    \item $B$ = ``head on both tosses''
+    \item $C$ = ``head on 2nd toss''
+\end{itemize}
+Using $S = \{HH, HT, TH, TT\}$: $P(A) = P(C) = \frac{1}{2}$, $P(B) = \frac{1}{4}$, $P(AB) = P(AC) = \frac{1}{4}$.
+
+Since $P(A)P(B) = \frac{1}{8} \neq \frac{1}{4} = P(AB)$, $A$ and $B$ are \textbf{dependent}.
+
+Since $P(A)P(C) = \frac{1}{4} = P(AC)$, $A$ and $C$ are \textbf{independent}.
+\end{examplebox}
+
+\begin{examplebox}[Example 2.3.3]
+If $A$ and $B$ are independent events, show that $\bar{A}$ and $B$ are independent.
+
+\textbf{Proof:} Since $B = (AB) \cup (\bar{A}B)$ with $AB$ and $\bar{A}B$ mutually exclusive:
+\[P(\bar{A}B) = P(B) - P(AB) = P(B) - P(A)P(B) = (1-P(A))P(B) = P(\bar{A})P(B)\]
+\end{examplebox}
+
+\begin{examplebox}[Example 2.3.4]
+A pseudo random number generator gives independent digits from $\{0,1,\ldots,9\}$, each with probability $\frac{1}{10}$.
+
+(a) $P(\text{all 5 digits odd}) = \left(\frac{1}{2}\right)^5 = \frac{1}{32}$
+
+(b) $P(\text{9 first occurs on trial 10}) = (0.9)^9(0.1)$
+\end{examplebox}
+
+\section{Conditional Probability and Product Rules for Intersections of Events}
+
+\begin{definitionbox}[Definition 2.4.1 (Conditional Probability)]
+The \textbf{conditional probability} of event $A$, given event $B$, is
+\[P(A|B) = \frac{P(AB)}{P(B)} \quad \text{provided that } P(B) \neq 0\]
+\end{definitionbox}
+
+\begin{rulebox}[Rule 7a (Product Rule for Two Events)]
+\[P(AB) = P(B)P(A|B) = P(A)P(B|A)\]
+\end{rulebox}
+
+\begin{rulebox}[Rule 7b (Product Rule for Three Events)]
+\[P(ABC) = P(A)P(B|A)P(C|AB)\]
+\end{rulebox}
+
+\begin{rulebox}[Rule 8 (Law of Total Probability)]
+Let $\{A_i\}_{i=1}^n$ be a partition of $S$ (i.e., $A_i \cap A_j = \emptyset$ for $i \neq j$ and $\bigcup_{i=1}^n A_i = S$) with $P(A_i) > 0$ for all $i$. For any event $B$:
+\[P(B) = \sum_{i=1}^n P(A_i)P(B|A_i)\]
+\end{rulebox}
+
+\begin{rulebox}[Rule 9 (Bayes' Rule)]
+Let $\{A_i\}_{i=1}^n$ be a partition of $S$ with $P(A_i) > 0$ for all $i$. For any event $B$ with $P(B) > 0$:
+\[P(A_j|B) = \frac{P(A_j)P(B|A_j)}{\sum_{i=1}^n P(A_i)P(B|A_i)}\]
+\end{rulebox}
+
+
+\begin{examplebox}[Example 2.4.1]
+A fair coin is tossed three times. Find the probability that if at least one head occurred, exactly two heads occurred.
+
+\textbf{Solution:} Let $A$ = ``at least one head'' and $B$ = ``exactly two heads''.
+\[P(B|A) = \frac{P(AB)}{P(A)} = \frac{P(B)}{P(A)} = \frac{3/8}{7/8} = \frac{3}{7}\]
+\end{examplebox}
+
+\begin{examplebox}[Example 2.4.4 (Insurance Risk Classes)]
+In an insurance portfolio: 10\% in class 1 (high risk) with claim probability 0.4, 40\% in class 2 with claim probability 0.2, 50\% in class 3 (low risk) with claim probability 0.05. Find $P(\text{class 1} | \text{claim})$.
+
+\textbf{Solution:} Using the Law of Total Probability:
+$P(\text{claim}) = (0.10)(0.4) + (0.40)(0.2) + (0.50)(0.05) = 0.145$
+
+Using Bayes' Rule:
+$P(\text{class 1}|\text{claim}) = \frac{(0.10)(0.4)}{0.145} = \frac{0.04}{0.145} \approx 0.276$
+\end{examplebox}
+
+\begin{examplebox}[Example 2.4.5 (Diagnostic Testing)]
+A medical test has 99\% sensitivity (true positive rate) and 98\% specificity (true negative rate). If 0.5\% of the population has the disease, find $P(\text{disease}|\text{positive test})$.
+
+\textbf{Solution:} Let $D$ = disease, $T^+$ = positive test.
+\begin{align*}
+P(T^+) &= P(D)P(T^+|D) + P(\bar{D})P(T^+|\bar{D})\\
+&= (0.005)(0.99) + (0.995)(0.02) = 0.02485
+\end{align*}
+\[P(D|T^+) = \frac{(0.005)(0.99)}{0.02485} \approx 0.199\]
+Only about 20\% of positive tests are true positives!
+\end{examplebox}
+
+
+\subsection*{Section 2.2 Problems}
+\begin{enumerate}
+    \item According to a survey, 55\% of voters are female, 55\% are politically right, and 15\% are male and politically left. What percentage are female and politically right?
+    \item If $A$ and $B$ are mutually exclusive with $P(A) = 0.25$ and $P(B) = 0.4$, find $P(\bar{A})$, $P(A \cup B)$, $P(A \cap B)$, $P(\bar{A} \cup \bar{B})$, $P(\bar{A} \cap \bar{B})$.
+\end{enumerate}
+
+\subsection*{Section 2.3 Problems}
+\begin{enumerate}
+    \item If events $A$ and $B$ are independent with $P(A) = 0.3$ and $P(B) = 0.2$, determine $P(A \cup B)$.
+    \item Three digits are chosen at random with replacement from $\{0,1,\ldots,9\}$. Find $P(\text{all identical})$, $P(\text{all exceed 4})$, $P(\text{all different})$.
+\end{enumerate}
+
+\subsection*{Section 2.4 Problems}
+\begin{enumerate}
+    \item Consider three identically-shaped dice: one fair, one with faces $\{1,2,3,4,5,5\}$, and one with all 6's. A die is chosen at random and rolled twice, showing 6 both times. Find $P(\text{die was the all-6 die})$.
+    \item A drawer contains 3 red socks and 4 blue socks. If 2 socks are drawn at random without replacement, find $P(\text{both same color})$.
+\end{enumerate}
+
+
+\chapter{Univariate Discrete Probability Distributions}
+
+\section{Discrete Random Variables}
+
+\begin{definitionbox}[Definition 3.1.1 (Random Variable)]
+A \textbf{random variable} $X$ is a function (i.e., $X: S \mapsto \mathbb{R}$) that assigns a real number to each point in the sample space $S$.
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 3.1.2 (Probability Mass Function)]
+The \textbf{probability mass function (pmf)} of a random variable $X$ is the function
+\[f(x) = P(X = x) \quad \text{for } x \in A\]
+where $A$ is the range of $X$. Properties: $0 \leq f(x) \leq 1$ for all $x$, and $\sum_{x \in A} f(x) = 1$.
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 3.1.3 (Cumulative Distribution Function)]
+The \textbf{cumulative distribution function (cdf)} of a random variable $X$ is the function
+\[F(x) = P(X \leq x) = \sum_{u \leq x} f(u) \quad \text{for } x \in \mathbb{R}\]
+Properties: $0 \leq F(x) \leq 1$, $F$ is non-decreasing, $\lim_{x \to -\infty} F(x) = 0$, $\lim_{x \to \infty} F(x) = 1$.
+\end{definitionbox}
+
+
+\begin{examplebox}[Example 3.1.1]
+Two fair dice are thrown. Let $X$ be the sum of the values on the upturned faces.
+
+The range of $X$ is $A = \{2, 3, \ldots, 12\}$. The pmf is:
+\begin{center}
+\begin{tabular}{c|ccccccccccc}
+$x$ & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12\\
+\hline
+$f(x)$ & $\frac{1}{36}$ & $\frac{2}{36}$ & $\frac{3}{36}$ & $\frac{4}{36}$ & $\frac{5}{36}$ & $\frac{6}{36}$ & $\frac{5}{36}$ & $\frac{4}{36}$ & $\frac{3}{36}$ & $\frac{2}{36}$ & $\frac{1}{36}$
+\end{tabular}
+\end{center}
+\end{examplebox}
+
+\section{Functions of Random Variables}
+
+\subsection*{Key Concepts}
+If $X$ is a random variable and $Y = g(X)$ for some function $g$, then $Y$ is also a random variable. To find the pmf of $Y$:
+\[f_Y(y) = P(Y = y) = P(g(X) = y) = \sum_{\{x: g(x) = y\}} f_X(x)\]
+
+\section{Expectation of a Random Variable}
+
+\begin{definitionbox}[Definition 3.3.1 (Expected Value)]
+The \textbf{expected value} (also called the \textbf{mean} or \textbf{expectation}) of a discrete random variable $X$ with range $A$ and pmf $f(x)$ is
+\[\mu = E(X) = \sum_{x \in A} x \cdot f(x)\]
+provided the sum converges absolutely.
+\end{definitionbox}
+
+\begin{theorembox}[Theorem 3.3.1 (Expectation of a Function)]
+Suppose that $X$ is a discrete random variable with range $A$ and pmf $f(x)$. Then, the expected value of any real-valued function $g(X)$ is
+\[E(g(X)) = \sum_{x \in A} g(x) \cdot f(x)\]
+\end{theorembox}
+
+\begin{theorembox}[Theorem 3.3.2 (Linearity of Expectation)]
+For real constants $c_1, c_2, \ldots, c_n$ and real-valued functions $g_1, g_2, \ldots, g_n$,
+\[E\left(\sum_{i=1}^n c_i g_i(X)\right) = \sum_{i=1}^n c_i E(g_i(X))\]
+\end{theorembox}
+
+\begin{corollarybox}[Corollary 3.3.1]
+For real constants $a$ and $b$:
+\[E(aX + b) = aE(X) + b\]
+\end{corollarybox}
+
+
+\begin{definitionbox}[Definition 3.3.2 (Variance)]
+The \textbf{variance} of a random variable $X$ is given by
+\[\text{Var}(X) = E\left[(X - \mu)^2\right] = \sigma^2\]
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 3.3.3 (Standard Deviation)]
+The \textbf{standard deviation} of a random variable $X$ is given by
+\[\sigma = \text{SD}(X) = \sqrt{\text{Var}(X)}\]
+\end{definitionbox}
+
+\begin{theorembox}[Theorem 3.3.3 (Variance Formulas)]
+\[\text{Var}(X) = E(X^2) - \mu^2\]
+\[\text{Var}(X) = E(X(X-1)) + \mu - \mu^2\]
+\end{theorembox}
+
+\begin{theorembox}[Theorem 3.3.4 (Variance of Linear Function)]
+For real constants $a$ and $b$:
+\[\text{Var}(aX + b) = a^2 \text{Var}(X)\]
+\[\text{SD}(aX + b) = |a| \text{SD}(X)\]
+\end{theorembox}
+
+
+\begin{examplebox}[Example 3.3.1]
+A lottery sells 1000 tickets numbered 000--999 for \$10 each. A 3-digit winning number is drawn. Prizes: \$500 for matching all 3 digits, \$100 for matching last 2 digits only, \$10 for matching last digit only. Find $E(\text{net winnings})$.
+
+\textbf{Solution:} Let $X$ = winnings.
+\begin{align*}
+E(X) &= 500 \cdot \frac{1}{1000} + 100 \cdot \frac{9}{1000} + 10 \cdot \frac{90}{1000} + 0 \cdot \frac{900}{1000}\\
+&= 0.50 + 0.90 + 0.90 = 2.30
+\end{align*}
+So $E(\text{net winnings}) = E(X) - 10 = -\$7.70$
+\end{examplebox}
+
+\begin{examplebox}[Example 3.3.3]
+For the pmf: $x \in \{1,2,\ldots,9\}$ with $f(x) = \{0.07, 0.1, 0.12, 0.13, 0.16, 0.13, 0.12, 0.1, 0.07\}$
+
+Since the distribution is symmetric about $x = 5$: $\mu_X = 5$
+
+$E(X^2) = \sum x^2 f(x) = 30.26$
+
+$\sigma_X^2 = E(X^2) - \mu^2 = 30.26 - 25 = 5.26$, so $\sigma_X \approx 2.29$
+\end{examplebox}
+
+\section{Moment Generating Functions}
+
+\begin{definitionbox}[Definition 3.4.1 (Moment Generating Function)]
+Consider a discrete random variable $X$ with range $A$ and pmf $f(x)$. The \textbf{moment generating function (mgf)} of $X$ is defined as
+\[M(t) = E(e^{tX}) = \sum_{x \in A} e^{tx} f(x)\]
+provided the mgf is finite for $t$ in an open neighborhood of 0.
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 3.4.2 (Moments)]
+For a random variable $X$, the quantity $E(X^n)$, $n = 1, 2, 3, \ldots$, is called the \textbf{$n$th moment} of the probability distribution.
+\end{definitionbox}
+
+\begin{theorembox}[Theorem 3.4.1 (Uniqueness Theorem)]
+Suppose that random variables $X$ and $Y$ have moment generating functions $M_X(t)$ and $M_Y(t)$, respectively. If $M_X(t) = M_Y(t)$ for all $t \in (-a, a)$ for some $a > 0$, then $X$ and $Y$ have the same probability distribution.
+\end{theorembox}
+
+\begin{theorembox}[Theorem 3.4.2 (Moments from MGF)]
+If $X$ is a discrete random variable with mgf $M(t)$, then
+\[E(X^n) = M^{(n)}(0) = \left.\frac{d^n}{dt^n} M(t)\right|_{t=0}\]
+\end{theorembox}
+
+\begin{theorembox}[Theorem 3.4.3 (MGF of Linear Transformation)]
+Let $X$ be a random variable with mgf $M_X(t)$. If $Y = aX + b$, then:
+\[M_Y(t) = e^{bt} M_X(at)\]
+\end{theorembox}
+
+\section{Special Discrete Probability Distributions}
+
+\subsection{Discrete Uniform Distribution}
+\begin{definitionbox}[Discrete Uniform Distribution $X \sim \text{DU}(a, b)$]
+$X$ takes values in $\{a, a+1, \ldots, b\}$ with equal probability.
+
+\textbf{PMF:} $f(x) = \frac{1}{b-a+1}$ for $x = a, a+1, \ldots, b$
+
+\textbf{Mean:} $E(X) = \frac{a+b}{2}$
+
+\textbf{Variance:} $\text{Var}(X) = \frac{(b-a)(b-a+2)}{12}$
+\end{definitionbox}
+
+\subsection{Binomial Distribution}
+\begin{definitionbox}[Binomial Distribution $X \sim \text{Bin}(n, p)$]
+$X$ = number of successes in $n$ independent Bernoulli trials, each with success probability $p$.
+
+\textbf{PMF:} $f(x) = \binom{n}{x} p^x (1-p)^{n-x}$ for $x = 0, 1, \ldots, n$
+
+\textbf{Mean:} $E(X) = np$
+
+\textbf{Variance:} $\text{Var}(X) = np(1-p)$
+
+\textbf{MGF:} $M(t) = (pe^t + 1 - p)^n$
+\end{definitionbox}
+
+\subsection{Hypergeometric Distribution}
+\begin{definitionbox}[Hypergeometric Distribution $X \sim \text{HG}(N, r, n)$]
+From a population of $N$ objects ($r$ successes, $N-r$ failures), $n$ are selected without replacement. $X$ = number of successes.
+
+\textbf{PMF:} $f(x) = \frac{\binom{r}{x}\binom{N-r}{n-x}}{\binom{N}{n}}$ for $x = \max(0, n-N+r), \ldots, \min(r, n)$
+
+\textbf{Mean:} $E(X) = \frac{nr}{N}$
+
+\textbf{Variance:} $\text{Var}(X) = \frac{nr(N-r)(N-n)}{N^2(N-1)}$
+\end{definitionbox}
+
+\subsection{Geometric Distribution}
+\begin{definitionbox}[Geometric Distribution $X \sim \text{Geo}(p)$]
+$X$ = number of failures before the first success in independent Bernoulli trials.
+
+\textbf{PMF:} $f(x) = (1-p)^x p$ for $x = 0, 1, 2, \ldots$
+
+\textbf{CDF:} $F(x) = 1 - (1-p)^{x+1}$ for $x \geq 0$
+
+\textbf{Mean:} $E(X) = \frac{1-p}{p}$
+
+\textbf{Variance:} $\text{Var}(X) = \frac{1-p}{p^2}$
+
+\textbf{MGF:} $M(t) = \frac{p}{1 - (1-p)e^t}$ for $t < \ln(1-p)^{-1}$
+\end{definitionbox}
+
+\subsection{Negative Binomial Distribution}
+\begin{definitionbox}[Negative Binomial Distribution $X \sim \text{NB}(k, p)$]
+$X$ = number of failures before the $k$th success.
+
+\textbf{PMF:} $f(x) = \binom{x+k-1}{x} p^k (1-p)^x$ for $x = 0, 1, 2, \ldots$
+
+\textbf{Mean:} $E(X) = \frac{k(1-p)}{p}$
+
+\textbf{Variance:} $\text{Var}(X) = \frac{k(1-p)}{p^2}$
+
+\textbf{MGF:} $M(t) = \left(\frac{p}{1 - (1-p)e^t}\right)^k$ for $t < \ln(1-p)^{-1}$
+\end{definitionbox}
+
+\subsection{Poisson Distribution}
+\begin{definitionbox}[Poisson Distribution $X \sim \text{Poi}(\mu)$]
+Used to model counts of rare events; approximates $\text{Bin}(n, p)$ when $n$ large, $p$ small, $\mu = np$.
+
+\textbf{PMF:} $f(x) = \frac{\mu^x e^{-\mu}}{x!}$ for $x = 0, 1, 2, \ldots$
+
+\textbf{Mean:} $E(X) = \mu$
+
+\textbf{Variance:} $\text{Var}(X) = \mu$
+
+\textbf{MGF:} $M(t) = e^{\mu(e^t - 1)}$
+\end{definitionbox}
+
+
+\begin{examplebox}[Example 3.5.1 (Hypergeometric vs Binomial Approximation)]
+15 cans of soup: 6 tomato, 9 mushroom. Select 8 at random. Find $P(\text{3 tomato})$.
+
+\textbf{Exact (Hypergeometric):} $P(X = 3) = \frac{\binom{6}{3}\binom{9}{5}}{\binom{15}{8}} = 0.3916$
+
+\textbf{Binomial Approximation:} $P(X = 3) = \binom{8}{3}\left(\frac{6}{15}\right)^3\left(\frac{9}{15}\right)^5 = 0.2787$
+
+The approximation is poor because we're sampling over half the population. With 1500 cans (600 tomato), the hypergeometric gives 0.2794 vs binomial 0.2787 -- much closer!
+\end{examplebox}
+
+\begin{examplebox}[Example 3.5.2 (Poisson Approximation)]
+200 wedding guests. Find $P(\text{exactly 2 born on January 1})$.
+
+\textbf{Exact (Binomial):} $P(X = 2) = \binom{200}{2}\left(\frac{1}{365}\right)^2\left(\frac{364}{365}\right)^{198} = 0.08677$
+
+\textbf{Poisson Approximation:} With $\mu = \frac{200}{365}$:
+$P(X = 2) = \frac{(200/365)^2 e^{-200/365}}{2!} = 0.08679$
+
+Excellent approximation!
+\end{examplebox}
+
+
+\subsection*{Section 3.5 Problems}
+\begin{enumerate}
+    \item A random four-digit number is created from $\{1, \ldots, 9\}$ with replacement. Find the pmf of $X$ = smallest digit.
+    \item The fraction of a population with blood type O+ is 0.38. Find $P(\text{more than 10 people tested before finding 5 with O+})$.
+    \item An airline sells 122 tickets for a 120-seat flight. If each passenger shows up independently with probability 0.97, find the probability of overbooking. Compare with Poisson approximation.
+\end{enumerate}
+
+
+\chapter{Multivariate Discrete Probability Distributions}
+
+\section{Basic Terminology and Techniques}
+
+\subsection*{Key Concepts}
+\textbf{Joint PMF:} For discrete random variables $X$ and $Y$:
+\[f(x, y) = P(X = x, Y = y)\]
+Properties: $0 \leq f(x, y) \leq 1$ and $\sum_{\text{all } (x,y)} f(x, y) = 1$
+
+\textbf{Marginal PMFs:}
+\[f_X(x) = \sum_{\text{all } y} f(x, y) \quad \text{and} \quad f_Y(y) = \sum_{\text{all } x} f(x, y)\]
+
+\begin{definitionbox}[Definition 4.1.1 (Independent Random Variables)]
+$X$ and $Y$ are \textbf{independent random variables} if and only if
+\[f(x, y) = f_X(x) \cdot f_Y(y) \quad \text{for all } x, y\]
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 4.1.2 (Mutual Independence)]
+$X_1, X_2, \ldots, X_n$ are \textbf{independent random variables} if and only if
+\[f(x_1, x_2, \ldots, x_n) = f_1(x_1) \cdot f_2(x_2) \cdots f_n(x_n) \quad \text{for all } x_1, \ldots, x_n\]
+\end{definitionbox}
+
+\section{Multinomial Distribution}
+
+\begin{definitionbox}[Multinomial Distribution]
+Consider $n$ independent trials where each trial results in one of $k$ outcomes with probabilities $p_1, p_2, \ldots, p_k$ (where $\sum_{i=1}^k p_i = 1$). If $X_i$ = number of outcomes of type $i$, then $(X_1, \ldots, X_k)$ has a multinomial distribution.
+
+\textbf{Joint PMF:}
+\[f(x_1, \ldots, x_k) = \frac{n!}{x_1! x_2! \cdots x_k!} p_1^{x_1} p_2^{x_2} \cdots p_k^{x_k}\]
+for $x_i \geq 0$ integers with $\sum_{i=1}^k x_i = n$.
+
+\textbf{Marginals:} $X_i \sim \text{Bin}(n, p_i)$
+\end{definitionbox}
+
+\section{Expectation, Covariance, and Correlation}
+
+\begin{theorembox}[Theorem 4.3.1]
+Suppose that $X$ and $Y$ are independent random variables. If $g_1$ and $g_2$ are two real-valued functions, then
+\[E(g_1(X) \cdot g_2(Y)) = E(g_1(X)) \cdot E(g_2(Y))\]
+\end{theorembox}
+
+\begin{definitionbox}[Definition 4.3.1 (Covariance)]
+The \textbf{covariance} of random variables $X$ and $Y$ is given by
+\[\text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)] = E(XY) - \mu_X \mu_Y\]
+\end{definitionbox}
+
+\begin{theorembox}[Theorem 4.3.2]
+If $X$ and $Y$ are independent random variables, then $\text{Cov}(X, Y) = 0$.
+
+\textbf{Note:} The converse is NOT generally true!
+\end{theorembox}
+
+\begin{definitionbox}[Definition 4.3.2 (Correlation Coefficient)]
+The \textbf{correlation coefficient} of random variables $X$ and $Y$ is
+\[\rho = \text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}\]
+Properties: $-1 \leq \rho \leq 1$
+\end{definitionbox}
+
+\section{Linear Combinations of Random Variables}
+
+\subsection*{Key Results}
+For random variables $X_1, \ldots, X_n$ and constants $a_1, \ldots, a_n$:
+
+\textbf{Mean of Linear Combination:}
+\[E\left(\sum_{i=1}^n a_i X_i\right) = \sum_{i=1}^n a_i E(X_i)\]
+
+\textbf{Variance of Linear Combination:}
+\[\text{Var}\left(\sum_{i=1}^n a_i X_i\right) = \sum_{i=1}^n a_i^2 \text{Var}(X_i) + 2\sum_{i<j} a_i a_j \text{Cov}(X_i, X_j)\]
+
+\textbf{If $X_1, \ldots, X_n$ are independent:}
+\[\text{Var}\left(\sum_{i=1}^n a_i X_i\right) = \sum_{i=1}^n a_i^2 \text{Var}(X_i)\]
+
+\section{Markov's Inequality, Chebyshev's Inequality, and the Law of Large Numbers}
+
+\begin{theorembox}[Theorem 4.5.1 (Markov's Inequality)]
+If $X$ is a random variable with $E[|X|] < \infty$, then for any $\varepsilon > 0$:
+\[P(|X| \geq \varepsilon) \leq \frac{E[|X|]}{\varepsilon}\]
+\end{theorembox}
+
+\begin{theorembox}[Theorem 4.5.2 (Chebyshev's Inequality)]
+If $X$ is a random variable with $E(X) = \mu$ and $\text{Var}(X) = \sigma^2$, then for any $k > 0$:
+\[P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}\]
+Equivalently, for any $\varepsilon > 0$:
+\[P(|X - \mu| \geq \varepsilon) \leq \frac{\sigma^2}{\varepsilon^2}\]
+\end{theorembox}
+
+\begin{theorembox}[Theorem 4.5.3 (Weak Law of Large Numbers)]
+Suppose $X_1, X_2, \ldots, X_n$ are independent random variables with common mean $\mu$ and common variance $\sigma^2$. Let $\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$. Then for any $\varepsilon > 0$:
+\[\lim_{n \to \infty} P(|\bar{X} - \mu| < \varepsilon) = 1\]
+\end{theorembox}
+
+\section{Conditional Probability Distributions}
+
+\begin{definitionbox}[Definition 4.6.1 (Conditional PMF)]
+Suppose that $X$ and $Y$ are discrete random variables with joint pmf $f(x, y)$. The \textbf{conditional pmf} of $X$ given $Y = y$ is
+\[f(x|y) = P(X = x | Y = y) = \frac{f(x, y)}{f_Y(y)}\]
+provided $f_Y(y) > 0$.
+\end{definitionbox}
+
+\begin{definitionbox}[Definition 4.6.2 (Conditional Mean)]
+The \textbf{conditional mean} of $X$ given $Y = y$ is
+\[E(X | Y = y) = \sum_{\text{all } x} x \cdot f(x|y)\]
+\end{definitionbox}
+
+\subsection*{Law of Total Expectation}
+\[E(X) = \sum_{\text{all } y} E(X | Y = y) \cdot f_Y(y) = E[E(X|Y)]\]
+
+
+\chapter{Univariate Continuous Probability Distributions}
+
+\section{Continuous Random Variables}
+
+\begin{definitionbox}[Definition 5.1.1 (Probability Density Function)]
+The \textbf{probability density function (pdf)} of a continuous random variable $X$ is the function $f(x)$ such that:
+\[P(a \leq X \leq b) = \int_a^b f(x) \, dx\]
+Properties: $f(x) \geq 0$ for all $x$, and $\int_{-\infty}^{\infty} f(x) \, dx = 1$
+\end{definitionbox}
+
+\textbf{Note:} For continuous random variables, $P(X = x) = 0$ for any specific value $x$.
+
+\textbf{CDF:} $F(x) = P(X \leq x) = \int_{-\infty}^x f(t) \, dt$
+
+\textbf{Relationship:} $f(x) = F'(x)$ wherever $F$ is differentiable.
+
+\begin{definitionbox}[Definition 5.1.2 (Quantile)]
+For $p \in (0, 1)$, the \textbf{$p$th quantile} (or \textbf{100$p$th percentile}) of $X$ is the value $q(p)$ such that:
+\[F(q(p)) = P(X \leq q(p)) = p\]
+The \textbf{median} is $q(0.5)$.
+\end{definitionbox}
+
+\section{Functions of Random Variables}
+
+\begin{theorembox}[Theorem 5.2.1 (Transformation Method)]
+Let $X$ be a continuous random variable with pdf $f_X(x)$. Suppose that $g$ is a strictly monotonic (increasing or decreasing) differentiable function. Then $Y = g(X)$ has pdf:
+\[f_Y(y) = f_X(g^{-1}(y)) \left|\frac{dg^{-1}(y)}{dy}\right|\]
+\end{theorembox}
+
+\begin{corollarybox}[Corollary 5.2.1 (Linear Transformation)]
+If $X$ has pdf $f_X(x)$ and $Y = aX + b$ where $a \neq 0$, then:
+\[f_Y(y) = \frac{1}{|a|} f_X\left(\frac{y - b}{a}\right)\]
+\end{corollarybox}
+
+\section{Expectation of a Random Variable}
+
+\subsection*{Key Formulas for Continuous Random Variables}
+\textbf{Expected Value:}
+\[E(X) = \int_{-\infty}^{\infty} x f(x) \, dx\]
+
+\textbf{Expected Value of a Function:}
+\[E(g(X)) = \int_{-\infty}^{\infty} g(x) f(x) \, dx\]
+
+\textbf{Variance:}
+\[\text{Var}(X) = E(X^2) - [E(X)]^2 = \int_{-\infty}^{\infty} (x - \mu)^2 f(x) \, dx\]
+
+\section{Special Continuous Probability Distributions}
+
+\subsection{Continuous Uniform Distribution}
+\begin{definitionbox}[Uniform Distribution $X \sim U(a, b)$]
+\textbf{PDF:} $f(x) = \frac{1}{b-a}$ for $a \leq x \leq b$
+
+\textbf{CDF:} $F(x) = \frac{x-a}{b-a}$ for $a \leq x \leq b$
+
+\textbf{Mean:} $E(X) = \frac{a+b}{2}$
+
+\textbf{Variance:} $\text{Var}(X) = \frac{(b-a)^2}{12}$
+
+\textbf{MGF:} $M(t) = \frac{e^{tb} - e^{ta}}{t(b-a)}$ for $t \neq 0$
+\end{definitionbox}
+
+\subsection{Exponential Distribution}
+\begin{definitionbox}[Exponential Distribution $X \sim \text{Exp}(\theta)$]
+\textbf{PDF:} $f(x) = \frac{1}{\theta} e^{-x/\theta}$ for $x > 0$
+
+\textbf{CDF:} $F(x) = 1 - e^{-x/\theta}$ for $x > 0$
+
+\textbf{Mean:} $E(X) = \theta$
+
+\textbf{Variance:} $\text{Var}(X) = \theta^2$
+
+\textbf{MGF:} $M(t) = (1 - \theta t)^{-1}$ for $t < 1/\theta$
+
+\textbf{Memoryless Property:} $P(X > s + t | X > s) = P(X > t)$
+\end{definitionbox}
+
+\subsection{Normal (Gaussian) Distribution}
+\begin{definitionbox}[Normal Distribution $X \sim N(\mu, \sigma^2)$]
+\textbf{PDF:} $f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ for $x \in \mathbb{R}$
+
+\textbf{Mean:} $E(X) = \mu$
+
+\textbf{Variance:} $\text{Var}(X) = \sigma^2$
+
+\textbf{MGF:} $M(t) = e^{\mu t + \frac{\sigma^2 t^2}{2}}$
+\end{definitionbox}
+
+\begin{theorembox}[Theorem 5.4.2 (Standardization)]
+If $X \sim N(\mu, \sigma^2)$ and $Z = \frac{X - \mu}{\sigma}$, then $Z \sim N(0, 1)$.
+\end{theorembox}
+
+\textbf{Standard Normal Distribution $Z \sim N(0, 1)$:}
+\[\Phi(z) = P(Z \leq z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} \, dt\]
+
+Properties: $\Phi(-z) = 1 - \Phi(z)$, $P(Z > z) = 1 - \Phi(z)$
+
+
+\begin{theorembox}[Theorem 5.4.1 (Probability Integral Transform)]
+Suppose that $X$ is a continuous random variable with cdf $F_X(x)$ that is strictly increasing on the support of $X$. Then $Y = F_X(X) \sim U(0, 1)$.
+
+\textbf{Corollary:} If $U \sim U(0, 1)$ and $F$ is a continuous cdf with inverse $F^{-1}$, then $X = F^{-1}(U)$ has cdf $F$.
+\end{theorembox}
+
+\section{The Central Limit Theorem}
+
+\begin{theorembox}[Theorem 5.5.1 (Central Limit Theorem)]
+Let $X_1, X_2, \ldots, X_n$ be independent random variables from a distribution with mean $\mu$ and variance $\sigma^2$. Let $S_n = \sum_{i=1}^n X_i$. Then as $n \to \infty$:
+\[\frac{S_n - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} Z \sim N(0, 1)\]
+
+Equivalently, for the sample mean $\bar{X} = S_n/n$:
+\[\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} Z \sim N(0, 1)\]
+\end{theorembox}
+
+\textbf{Practical Rule:} For large $n$ (typically $n \geq 30$):
+\begin{itemize}
+    \item $S_n \approx N(n\mu, n\sigma^2)$
+    \item $\bar{X} \approx N(\mu, \sigma^2/n)$
+\end{itemize}
+
+\textbf{Normal Approximation to Binomial:} If $X \sim \text{Bin}(n, p)$ with $np \geq 5$ and $n(1-p) \geq 5$:
+\[X \approx N(np, np(1-p))\]
+
+
+\begin{examplebox}[Example: Normal Approximation to Binomial]
+100 tomato seeds germinate independently with probability 0.8 each. Find $P(X \geq 75)$.
+
+\textbf{Solution:} $X \sim \text{Bin}(100, 0.8)$, so $\mu = 80$, $\sigma^2 = 16$.
+
+Using CLT: $P(X \geq 75) \approx P\left(Z \geq \frac{75 - 80}{4}\right) = P(Z \geq -1.25) = \Phi(1.25) \approx 0.894$
+\end{examplebox}
+
+\begin{examplebox}[Example: Sum of Random Variables]
+80 independent metal parts have costs $C_i$ with $E(C_i) = 13$ and $\text{Var}(C_i) = 861$. Find $P(\text{total cost} > 1200)$.
+
+\textbf{Solution:} Let $C = \sum_{i=1}^{80} C_i$. Then $E(C) = 1040$, $\text{Var}(C) = 68880$.
+
+$P(C > 1200) \approx P\left(Z > \frac{1200 - 1040}{\sqrt{68880}}\right) = P(Z > 0.61) \approx 0.271$
+\end{examplebox}
+
+
+\subsection*{Section 5.5 Problems}
+\begin{enumerate}
+    \item Let $X_1, \ldots, X_{100}$ be independent from a distribution with $\mu = 0.5$ and $\sigma^2 = 1/24$. Find $P(49 < \sum X_i < 50.5)$.
+    \item A game has three dice. Let $Y$ = (number of hearts) $- 1$. Find $P(\text{profit} > 0)$ after $n = 10, 25, 50$ plays.
+    \item How many voters should be surveyed so that $P\left(\left|\frac{X}{n} - 0.16\right| \leq 0.03\right) = 0.95$?
+\end{enumerate}
+
+\end{document}
